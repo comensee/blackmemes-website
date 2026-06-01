@@ -60,7 +60,7 @@ export default function Contact() {
       <h1 style={s.h1}>{c.h1[lang]}</h1>
       <p style={s.sub}>{c.sub[lang]}</p>
 
-      <form style={s.form} action="mailto:alain.bangoula@gmail.com" method="get">
+      <form style={s.form} action="mailto:contact@blackmemes.co" method="get">
         <label style={s.label}>
           {c.labelName[lang]}
           <input style={s.input} type="text" name="name" placeholder={c.placeName[lang]} required />
@@ -95,8 +95,8 @@ export default function Contact() {
         <p style={s.altTitle}>{c.directTitle[lang]}</p>
         <p style={s.altText}>
           {c.directText[lang]}{' '}
-          <a href="mailto:alain.bangoula@gmail.com" style={s.emailLink}>
-            alain.bangoula@gmail.com
+          <a href="mailto:contact@blackmemes.co" style={s.emailLink}>
+            contact@blackmemes.co
           </a>
         </p>
       </div>
