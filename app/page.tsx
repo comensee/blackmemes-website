@@ -6,10 +6,18 @@ import { t } from './translations'
 
 const s = {
   hero: {
-    textAlign: 'center' as const,
-    padding: '6rem 2rem 4rem',
-    maxWidth: '760px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '4rem',
+    padding: '5rem 2rem',
+    maxWidth: '1100px',
     margin: '0 auto',
+    flexWrap: 'wrap' as const,
+  },
+  heroText: {
+    flex: '1 1 340px',
+    maxWidth: '480px',
   },
   badge: {
     display: 'inline-block',
@@ -24,19 +32,18 @@ const s = {
     fontWeight: 600,
   },
   h1: {
-    fontSize: 'clamp(2.4rem, 6vw, 4rem)',
+    fontSize: 'clamp(2rem, 5vw, 3.2rem)',
     fontWeight: 900,
     lineHeight: 1.1,
-    margin: '0 0 1.5rem',
+    margin: '0 0 1.25rem',
     letterSpacing: '-1.5px',
     color: '#fff',
   },
   sub: {
-    fontSize: '1.15rem',
+    fontSize: '1.05rem',
     color: '#888',
     lineHeight: 1.7,
-    maxWidth: '560px',
-    margin: '0 auto 2.5rem',
+    marginBottom: '2rem',
   },
   cta: {
     display: 'inline-block',
@@ -47,6 +54,120 @@ const s = {
     borderRadius: '12px',
     textDecoration: 'none',
     fontSize: '1rem',
+  },
+  phonWrap: {
+    flex: '0 0 auto',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  phone: {
+    width: '240px',
+    height: '480px',
+    background: '#0d0d0d',
+    borderRadius: '36px',
+    border: '6px solid #333',
+    boxShadow: '0 0 0 1px #222, 0 32px 64px rgba(0,0,0,0.6)',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    overflow: 'hidden',
+    position: 'relative' as const,
+  },
+  notch: {
+    width: '80px',
+    height: '20px',
+    background: '#0d0d0d',
+    borderRadius: '0 0 14px 14px',
+    margin: '0 auto',
+    zIndex: 2,
+    flexShrink: 0,
+    border: '1px solid #222',
+    borderTop: 'none',
+  },
+  screen: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    overflow: 'hidden',
+  },
+  screenTop: {
+    flex: 1,
+    background: '#1a1a1a',
+    padding: '8px',
+    overflowY: 'hidden' as const,
+  },
+  searchBar: {
+    background: '#2a2a2a',
+    border: '1px solid #333',
+    borderRadius: '8px',
+    padding: '6px 10px',
+    fontSize: '9px',
+    color: '#666',
+    marginBottom: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px',
+  },
+  memeGrid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '4px',
+  },
+  memeCell: {
+    borderRadius: '6px',
+    background: '#2a2a2a',
+    aspectRatio: '1' as const,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '22px',
+  },
+  keyboard: {
+    background: '#2a2a2a',
+    borderTop: '1px solid #333',
+    padding: '6px 4px',
+    flexShrink: 0,
+  },
+  kbRow: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '3px',
+    marginBottom: '3px',
+  },
+  key: {
+    background: '#3a3a3a',
+    borderRadius: '4px',
+    width: '20px',
+    height: '22px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '7px',
+    color: '#ccc',
+    flexShrink: 0,
+  },
+  keyGold: {
+    background: '#FFD700',
+    borderRadius: '4px',
+    width: '44px',
+    height: '22px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '7px',
+    color: '#1a1a1a',
+    fontWeight: 700,
+    flexShrink: 0,
+  },
+  keyWide: {
+    background: '#3a3a3a',
+    borderRadius: '4px',
+    flex: 1,
+    height: '22px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '7px',
+    color: '#ccc',
   },
   section: {
     padding: '5rem 2rem',
@@ -103,6 +224,58 @@ const s = {
   },
 }
 
+const MEME_EMOJIS = ['😂', '💀', '😤', '🔥', '😭', '🤣', '👀', '💯']
+const KB_ROW1 = ['Q','W','E','R','T','Y','U','I','O','P']
+const KB_ROW2 = ['A','S','D','F','G','H','J','K','L']
+const KB_ROW3 = ['Z','X','C','V','B','N','M']
+
+function PhoneMockup() {
+  return (
+    <div style={s.phonWrap}>
+      <div style={s.phone}>
+        <div style={s.notch} />
+        <div style={s.screen}>
+          <div style={s.screenTop}>
+            <div style={s.searchBar}>
+              <span>🔍</span>
+              <span>Search memes…</span>
+            </div>
+            <div style={s.memeGrid}>
+              {MEME_EMOJIS.map((emoji, i) => (
+                <div key={i} style={{
+                  ...s.memeCell,
+                  background: i % 3 === 0 ? '#2a2a2a' : i % 3 === 1 ? '#222' : '#1e1e1e',
+                }}>
+                  {emoji}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={s.keyboard}>
+            <div style={s.kbRow}>
+              {KB_ROW1.map(k => <div key={k} style={s.key}>{k}</div>)}
+            </div>
+            <div style={s.kbRow}>
+              {KB_ROW2.map(k => <div key={k} style={s.key}>{k}</div>)}
+            </div>
+            <div style={s.kbRow}>
+              <div style={{ ...s.key, width: '28px' }}>⇧</div>
+              {KB_ROW3.map(k => <div key={k} style={s.key}>{k}</div>)}
+              <div style={{ ...s.key, width: '28px' }}>⌫</div>
+            </div>
+            <div style={{ ...s.kbRow, marginBottom: 0 }}>
+              <div style={{ ...s.key, width: '28px' }}>123</div>
+              <div style={s.keyGold}>MEME</div>
+              <div style={s.keyWide}>space</div>
+              <div style={{ ...s.key, width: '32px' }}>return</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   const { lang } = useLang()
   const h = t.home
@@ -110,10 +283,13 @@ export default function Home() {
   return (
     <>
       <section style={s.hero}>
-        <span style={s.badge}>{h.badge[lang]}</span>
-        <h1 style={s.h1}>{h.h1[lang]}</h1>
-        <p style={s.sub}>{h.sub[lang]}</p>
-        <Link href="#download" style={s.cta}>{h.cta[lang]}</Link>
+        <div style={s.heroText}>
+          <span style={s.badge}>{h.badge[lang]}</span>
+          <h1 style={s.h1}>{h.h1[lang]}</h1>
+          <p style={s.sub}>{h.sub[lang]}</p>
+          <Link href="#download" style={s.cta}>{h.cta[lang]}</Link>
+        </div>
+        <PhoneMockup />
       </section>
 
       <hr style={s.divider} />
