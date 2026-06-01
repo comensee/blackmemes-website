@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLang } from './language-provider'
 import { t } from './translations'
 
@@ -18,11 +19,20 @@ const s = {
     backdropFilter: 'blur(8px)',
     zIndex: 100,
   },
-  logo: {
+  logoWrap: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.6rem',
+    textDecoration: 'none',
+  },
+  logoImg: {
+    borderRadius: '8px',
+    flexShrink: 0,
+  },
+  logoText: {
     fontWeight: 800,
     fontSize: '1.1rem',
     color: '#FFD700',
-    textDecoration: 'none',
     letterSpacing: '-0.5px',
   },
   right: {
@@ -65,7 +75,10 @@ export function Nav() {
   const { lang, toggle } = useLang()
   return (
     <nav style={s.nav}>
-      <Link href="/" style={s.logo}>Black Memes Generator</Link>
+      <Link href="/" style={s.logoWrap}>
+        <Image src="/icon.png" alt="Black Memes Generator" width={32} height={32} style={s.logoImg} />
+        <span style={s.logoText}>Black Memes Generator</span>
+      </Link>
       <div style={s.right}>
         <ul style={s.links}>
           <li><Link href="/" style={s.link}>{t.nav.home[lang]}</Link></li>

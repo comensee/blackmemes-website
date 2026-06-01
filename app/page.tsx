@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLang } from './language-provider'
 import { t } from './translations'
 
@@ -236,6 +237,10 @@ function PhoneMockup() {
         <div style={s.notch} />
         <div style={s.screen}>
           <div style={s.screenTop}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+              <Image src="/icon.png" alt="logo" width={20} height={20} style={{ borderRadius: '4px' }} />
+              <span style={{ fontSize: '9px', fontWeight: 700, color: '#FFD700', letterSpacing: '0.3px' }}>Black Memes</span>
+            </div>
             <div style={s.searchBar}>
               <span>🔍</span>
               <span>Search memes…</span>
