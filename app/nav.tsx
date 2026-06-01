@@ -11,17 +11,17 @@ const s = {
     justifyContent: 'space-between',
     padding: '0 2rem',
     height: '64px',
-    borderBottom: '1px solid #222',
+    borderBottom: '1px solid #333',
     position: 'sticky' as const,
     top: 0,
-    background: 'rgba(10,10,10,0.9)',
+    background: 'rgba(26,26,26,0.95)',
     backdropFilter: 'blur(8px)',
     zIndex: 100,
   },
   logo: {
     fontWeight: 800,
-    fontSize: '1.2rem',
-    color: '#fff',
+    fontSize: '1.1rem',
+    color: '#FFD700',
     textDecoration: 'none',
     letterSpacing: '-0.5px',
   },
@@ -43,16 +43,22 @@ const s = {
     fontSize: '0.9rem',
   },
   toggle: {
-    background: '#1a1a1a',
+    background: '#2a2a2a',
     border: '1px solid #333',
-    borderRadius: '6px',
-    color: '#aaa',
+    borderRadius: '8px',
+    color: '#FFD700',
     cursor: 'pointer',
     fontSize: '0.8rem',
-    fontWeight: 600,
+    fontWeight: 700,
     letterSpacing: '0.5px',
     padding: '0.3rem 0.65rem',
   },
+}
+
+const footerStyle = {
+  footer: { borderTop: '1px solid #333', padding: '2rem', textAlign: 'center' as const, color: '#555', fontSize: '0.85rem' },
+  links: { display: 'flex', justifyContent: 'center', gap: '1.5rem', listStyle: 'none', padding: 0, margin: '0 0 0.75rem 0' },
+  link: { color: '#555', textDecoration: 'none' },
 }
 
 export function Nav() {
@@ -76,13 +82,12 @@ export function Nav() {
 
 export function Footer() {
   const { lang } = useLang()
-  const footerLink = { color: '#555', textDecoration: 'none' }
   return (
-    <footer style={{ borderTop: '1px solid #222', padding: '2rem', textAlign: 'center', color: '#555', fontSize: '0.85rem' }}>
-      <ul style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', listStyle: 'none', padding: 0, margin: '0 0 0.75rem 0' }}>
-        <li><Link href="/" style={footerLink}>{t.nav.home[lang]}</Link></li>
-        <li><Link href="/tos" style={footerLink}>{t.nav.tos[lang]}</Link></li>
-        <li><Link href="/contact" style={footerLink}>{t.nav.contact[lang]}</Link></li>
+    <footer style={footerStyle.footer}>
+      <ul style={footerStyle.links}>
+        <li><Link href="/" style={footerStyle.link}>{t.nav.home[lang]}</Link></li>
+        <li><Link href="/tos" style={footerStyle.link}>{t.nav.tos[lang]}</Link></li>
+        <li><Link href="/contact" style={footerStyle.link}>{t.nav.contact[lang]}</Link></li>
       </ul>
       <p style={{ margin: 0 }}>© {new Date().getFullYear()} Black Memes Generator. {t.footer.copy[lang]}</p>
     </footer>

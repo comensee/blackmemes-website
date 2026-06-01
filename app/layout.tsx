@@ -10,7 +10,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', background: '#0a0a0a', color: '#f0f0f0', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <body style={{
+        margin: 0,
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        background: '#1a1a1a',
+        color: '#fff',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
         <LanguageProvider>
           <Nav />
           <main style={{ flex: 1 }}>{children}</main>

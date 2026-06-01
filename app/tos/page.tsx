@@ -6,11 +6,11 @@ import { t } from '../translations'
 
 const s = {
   container: { maxWidth: '760px', margin: '0 auto', padding: '4rem 2rem' },
-  h1: { fontSize: '2.2rem', fontWeight: 900, letterSpacing: '-1px', marginBottom: '0.5rem' },
-  meta: { color: '#666', fontSize: '0.9rem', marginBottom: '3rem' },
-  h2: { fontSize: '1.2rem', fontWeight: 700, marginTop: '2.5rem', marginBottom: '0.75rem', color: '#ddd' },
-  p: { color: '#999', lineHeight: 1.8, marginBottom: '1rem', fontSize: '0.95rem' },
-  ul: { color: '#999', lineHeight: 2, fontSize: '0.95rem', paddingLeft: '1.5rem' },
+  h1: { fontSize: '2.2rem', fontWeight: 900, letterSpacing: '-1px', marginBottom: '0.5rem', color: '#fff' },
+  meta: { color: '#555', fontSize: '0.9rem', marginBottom: '3rem' },
+  h2: { fontSize: '1.1rem', fontWeight: 700, marginTop: '2.5rem', marginBottom: '0.75rem', color: '#FFD700' },
+  p: { color: '#888', lineHeight: 1.8, marginBottom: '1rem', fontSize: '0.95rem' },
+  ul: { color: '#888', lineHeight: 2, fontSize: '0.95rem', paddingLeft: '1.5rem' },
 }
 
 export default function TOS() {
@@ -27,7 +27,7 @@ export default function TOS() {
           <p style={s.p}>
             {sec.body[lang]}
             {'link' in sec && (
-              <> <Link href="/contact" style={{ color: '#fff' }}>{(sec as { link: { en: string; fr: string } }).link[lang]}</Link>.</>
+              <> <Link href="/contact" style={{ color: '#FFD700' }}>{(sec as { link: { en: string; fr: string } }).link[lang]}</Link>.</>
             )}
           </p>
           {'list' in sec && (
