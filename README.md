@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Black Memes Generator — Website
 
-## Getting Started
+Marketing website for the Black Memes Generator mobile app. Three pages (Home, Terms of Service, Contact) with EN/FR language toggle.
 
-First, run the development server:
+**Live:** https://blackmemes.co
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- Next.js 16 (App Router) — all pages statically prerendered except `/api/contact`
+- Resend — transactional email for the contact form
+- Deployed on Vercel
+
+## Project structure
+
+```
+app/
+  layout.tsx            # Root layout with nav + footer (wraps LanguageProvider)
+  page.tsx              # Home — hero with phone mockup, features grid, download section
+  tos/page.tsx          # Terms of Service
+  contact/page.tsx      # Contact form (POSTs to /api/contact)
+  api/contact/route.ts  # API route — sends email via Resend
+  language-provider.tsx # Client-side EN/FR context (persisted in localStorage)
+  nav.tsx               # Nav + Footer client components
+  translations.ts       # All copy in EN and FR
+public/
+  icon.png              # App icon (copied from mobile repo assets)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+# create .env.local and add:
+# RESEND_API_KEY=re_...
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment variables
 
-## Learn More
+| Variable | Description |
+|----------|-------------|
+| `RESEND_API_KEY` | Resend API key — contact form emails won't send without this |
 
-To learn more about Next.js, take a look at the following resources:
+## Email setup (Resend)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Domain `blackmemes.co` is registered on Resend (domain ID: `1c386f52-da2b-45cb-b6d3-dbcb7fdcb6d1`). Required DNS records:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Type | Name | Value | Priority |
+|------|------|-------|----------|
+| TXT | `resend._domainkey.blackmemes.co` | DKIM public key (see Resend dashboard) | — |
+| MX | `send.blackmemes.co` | `feedback-smtp.us-east-1.amazonses.com` | 10 |
+| TXT | `send.blackmemes.co` | `v=spf1 include:amazonses.com ~all` | — |
+| TXT | `_dmarc.blackmemes.co` | `v=DMARC1; p=none; rua=mailto:contact@blackmemes.co` | — |
 
-## Deploy on Vercel
+Contact form sends from `noreply@blackmemes.co`, delivers to `contact@blackmemes.co`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+vercel --prod
+```
