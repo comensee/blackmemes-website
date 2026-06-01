@@ -1,4 +1,8 @@
+'use client'
+
 import Link from 'next/link'
+import { useLang } from './language-provider'
+import { t } from './translations'
 
 const s = {
   hero: {
@@ -32,7 +36,6 @@ const s = {
     fontSize: '1.15rem',
     color: '#888',
     lineHeight: 1.7,
-    marginBottom: '2.5rem',
     maxWidth: '560px',
     margin: '0 auto 2.5rem',
   },
@@ -69,38 +72,16 @@ const s = {
     borderRadius: '12px',
     padding: '2rem',
   },
-  cardIcon: {
-    fontSize: '2rem',
-    marginBottom: '1rem',
-  },
-  cardTitle: {
-    fontWeight: 700,
-    fontSize: '1.1rem',
-    marginBottom: '0.5rem',
-  },
-  cardText: {
-    color: '#888',
-    lineHeight: 1.6,
-    fontSize: '0.95rem',
-  },
-  divider: {
-    border: 'none',
-    borderTop: '1px solid #1a1a1a',
-    margin: 0,
-  },
+  cardIcon: { fontSize: '2rem', marginBottom: '1rem' },
+  cardTitle: { fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem' },
+  cardText: { color: '#888', lineHeight: 1.6, fontSize: '0.95rem', margin: 0 },
+  divider: { border: 'none', borderTop: '1px solid #1a1a1a', margin: 0 },
   storeSection: {
     textAlign: 'center' as const,
     padding: '5rem 2rem',
   },
-  storeTitle: {
-    fontSize: '1.5rem',
-    fontWeight: 700,
-    marginBottom: '0.75rem',
-  },
-  storeText: {
-    color: '#888',
-    marginBottom: '2rem',
-  },
+  storeTitle: { fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem' },
+  storeText: { color: '#888', marginBottom: '2rem' },
   storeBadges: {
     display: 'flex',
     justifyContent: 'center',
@@ -121,61 +102,29 @@ const s = {
   },
 }
 
-const features = [
-  {
-    icon: '⌨️',
-    title: 'Clavier intégré',
-    text: 'Accédez à des milliers de mèmes directement depuis votre clavier, sans quitter aucune application.',
-  },
-  {
-    icon: '🖤',
-    title: 'Contenu culturellement pertinent',
-    text: 'Des mèmes soigneusement sélectionnés et adaptés à la culture Black, pour des échanges authentiques.',
-  },
-  {
-    icon: '🔍',
-    title: 'Recherche intelligente',
-    text: "Trouvez le mème parfait en quelques mots grâce à une recherche alimentée par l'IA.",
-  },
-  {
-    icon: '⚡',
-    title: 'Rapide et fluide',
-    text: 'Une expérience optimisée pour iOS et Android, conçue pour être aussi rapide que la pensée.',
-  },
-  {
-    icon: '🔒',
-    title: 'Respect de la vie privée',
-    text: 'Votre historique reste sur votre appareil. Nous ne collectons que le strict nécessaire.',
-  },
-  {
-    icon: '✨',
-    title: 'Toujours à jour',
-    text: 'Notre catalogue de mèmes est mis à jour en continu pour rester dans la tendance.',
-  },
-]
-
 export default function Home() {
+  const { lang } = useLang()
+  const h = t.home
+
   return (
     <>
       <section style={s.hero}>
-        <span style={s.badge}>Disponible sur iOS &amp; Android</span>
-        <h1 style={s.h1}>Le clavier mème pour la culture Black</h1>
-        <p style={s.sub}>
-          Black Memes Generator est un clavier mobile qui vous donne accès à des milliers de mèmes culturellement pertinents, directement depuis votre clavier — dans n&apos;importe quelle application.
-        </p>
-        <Link href="#telecharger" style={s.cta}>Télécharger l&apos;app</Link>
+        <span style={s.badge}>{h.badge[lang]}</span>
+        <h1 style={s.h1}>{h.h1[lang]}</h1>
+        <p style={s.sub}>{h.sub[lang]}</p>
+        <Link href="#download" style={s.cta}>{h.cta[lang]}</Link>
       </section>
 
       <hr style={s.divider} />
 
       <section style={s.section}>
-        <h2 style={s.sectionTitle}>Pourquoi Black Memes Generator ?</h2>
+        <h2 style={s.sectionTitle}>{h.whyH2[lang]}</h2>
         <div style={s.grid}>
-          {features.map((f) => (
-            <div key={f.title} style={s.card}>
+          {h.features.map((f) => (
+            <div key={f.title.en} style={s.card}>
               <div style={s.cardIcon}>{f.icon}</div>
-              <div style={s.cardTitle}>{f.title}</div>
-              <p style={s.cardText}>{f.text}</p>
+              <div style={s.cardTitle}>{f.title[lang]}</div>
+              <p style={s.cardText}>{f.text[lang]}</p>
             </div>
           ))}
         </div>
@@ -183,16 +132,12 @@ export default function Home() {
 
       <hr style={s.divider} />
 
-      <section id="telecharger" style={s.storeSection}>
-        <h2 style={s.storeTitle}>Téléchargez l&apos;application</h2>
-        <p style={s.storeText}>Gratuit · iOS &amp; Android</p>
+      <section id="download" style={s.storeSection}>
+        <h2 style={s.storeTitle}>{h.downloadH2[lang]}</h2>
+        <p style={s.storeText}>{h.downloadSub[lang]}</p>
         <div style={s.storeBadges}>
-          <a href="#" style={s.storeBadge}>
-            <span>🍎</span> App Store
-          </a>
-          <a href="#" style={s.storeBadge}>
-            <span>🤖</span> Google Play
-          </a>
+          <a href="#" style={s.storeBadge}><span>🍎</span> App Store</a>
+          <a href="#" style={s.storeBadge}><span>🤖</span> Google Play</a>
         </div>
       </section>
     </>
