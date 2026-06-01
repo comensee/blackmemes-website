@@ -83,6 +83,7 @@ export function Nav() {
         <ul style={s.links}>
           <li><Link href="/" style={s.link}>{t.nav.home[lang]}</Link></li>
           <li><Link href="/tos" style={s.link}>{t.nav.tos[lang]}</Link></li>
+          <li><Link href="/privacy" style={s.link}>{t.nav.privacy[lang]}</Link></li>
           <li><Link href="/contact" style={s.link}>{t.nav.contact[lang]}</Link></li>
         </ul>
         <button onClick={toggle} style={s.toggle}>
@@ -100,6 +101,7 @@ export function Footer() {
       <ul style={footerStyle.links}>
         <li><Link href="/" style={footerStyle.link}>{t.nav.home[lang]}</Link></li>
         <li><Link href="/tos" style={footerStyle.link}>{t.nav.tos[lang]}</Link></li>
+        <li><Link href="/privacy" style={footerStyle.link}>{t.nav.privacy[lang]}</Link></li>
         <li><Link href="/contact" style={footerStyle.link}>{t.nav.contact[lang]}</Link></li>
       </ul>
       <p style={{ margin: 0 }}>© {new Date().getFullYear()} Black Memes Generator. {t.footer.copy[lang]}</p>
