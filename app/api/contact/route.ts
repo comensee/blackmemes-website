@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   const { error } = await resend.emails.send({
     from: 'Black Memes Generator <noreply@blackmemes.co>',
-    to: 'contact@blackmemes.co',
+    to: 'alain.bangoula@gmail.com',
     replyTo: email,
     subject: `[Contact] ${subject} — ${name}`,
     text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
